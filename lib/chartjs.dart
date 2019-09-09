@@ -293,7 +293,9 @@ abstract class ChartOptions {
       ChartAnimationOptions animation,
       ChartElementsOptions elements,
       ChartScales scales,
-      num cutoutPercentage});
+      num cutoutPercentage,
+      ChartPanOptions pan,
+      ChartZoomOptions zoom});
 
   external bool get responsive;
   external set responsive(bool v);
@@ -331,6 +333,10 @@ abstract class ChartOptions {
   external set circumference(num v);
   external num get rotation;
   external set rotation(num v);
+  external get pan;
+  external set pan(ChartPanOptions v);
+  external get zoom;
+  external set zoom(ChartZoomOptions v);
 }
 
 @anonymous
@@ -891,6 +897,39 @@ abstract class LogarithmicTickOptions implements TickOptions<num> {
   external set min(num v);
   external num get max;
   external set max(num v);
+}
+@anonymous
+@JS()
+abstract class ChartPanOptions {
+  external get enabled;
+  external set enabled(bool b);
+  external get mode;
+  external set mode(String mode);
+  external get rangeMin;
+  external set rangeMin(ChartPoint point);
+  external get rangeMax;
+  external set rangeMax(ChartPoint point);
+  // TODO: Implement callbacks: onPan({chart}), onPanComplete({chart})
+  external factory ChartPanOptions(
+      {bool enabled, String mode, ChartPoint rangeMin, ChartPoint rangeMax});
+}
+
+@anonymous
+@JS()
+abstract class ChartZoomOptions {
+  external get enabled;
+  external set enabled(bool v);
+  external get drag;
+  external set drag(bool v);
+  external get mode;
+  external set mode(String v);
+  external get rangeMin;
+  external set rangeMin(ChartPoint v);
+  external get rangeMax;
+  external set rangeMax(ChartPoint v);
+  // TODO: Implement callbacks: onZoom({chart}), onZoomComplete({chart})
+  external factory ChartZoomOptions(
+      {bool enabled, bool drag, String mode, ChartPoint rangeMin, ChartPoint rangeMax, double speed});
 }
 
 /*type ChartColor = string | CanvasGradient | CanvasPattern | string[];*/
