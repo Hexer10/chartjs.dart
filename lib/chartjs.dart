@@ -77,6 +77,9 @@ class Chart {
         global: Chart.ChartOptions & Chart.ChartFontOptions;
     }*/
           v);
+
+  external Function get resetZoom;
+  external set resetZoom(Function v);
 }
 
 @JS()
